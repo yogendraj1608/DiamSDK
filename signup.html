@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <main class="container">
+        <h2>Signup</h2>
+        <div>
+            <button id="walletGeneration"> Create Account</button>
+            <div id="wallet-keys"></div>
+        </div>
+        <div class="footer">
+            <span>Already have an account? <a href="index.html">Login</a></span>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/diamante-sdk-js@1.0.3/dist/diamante-sdk.min.js">
+    </script>
+
+    <script>
+        document.getElementById('walletGeneration').addEventListener('click', function () {
+            generateWallet();
+        });
+
+        function generateWallet() {
+            let pair = DiamanteSdk.Keypair.random()
+            let publicKey = pair.publicKey();
+            let privateKey = pair.secret();
+
+            document.getElementById('wallet-keys').innerHTML = `
+                <h3>Newly Generated Wallet Keys</h3>
+                <p>Public Key: ${publicKey}</p>
+                <p>Private Key: ${privateKey}</p>
+            `;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    background: linear-gradient(135deg, #141e30, #243b55);
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.logo-container {
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 100px; /* Adjust the size as needed */
+    z-index: 10;
+}
+
+.logo-container img {
+    width: 300%;
+    height: auto;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/diagmonds.png');
+    opacity: 0.1;
+    z-index: 1;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.05), rgba(0, 255, 255, 0));
+    pointer-events: none;
+    animation: rotateAnimation 10s linear infinite;
+}
+
+@keyframes rotateAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+main.container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+main h2 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: #00e6e6;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    animation: glowText 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+    0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6); }
+    100% { text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.8); }
+}
+
+main h2::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 50px;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #00e6e6, #0072ff);
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.input-field input {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    color: #fff;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.input-field input:focus {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: #00e6e6;
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.input-field input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#walletGeneration {
+    margin-top: 1rem;
+    padding: 0.6rem;
+    width: 100%;
+    background: linear-gradient(90deg, #00e6e6, #0072ff);
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#walletGeneration:hover {
+    background: linear-gradient(90deg, #0072ff, #00e6e6);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+    transform: scale(1.05);
+}
+
+.footer {
+    margin-top: 2rem;
+    color: #00e6e6;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.footer span {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer a {
+    color: #00e6e6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #0072ff;
+}
+
+footer {
+    color: #bbb;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, rgba(0, 255, 255, 0) 70%);
+    pointer-events: none;
+}

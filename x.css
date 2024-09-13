@@ -1,0 +1,155 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: inline-flex;
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+.sidebar {
+    position: fixed;
+    width: 220px;
+    height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    padding: 20px;
+    color: #fff;
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+.brand h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.sidebar-link-active span{
+    display: inline;
+}
+
+
+
+.sidebar-link i {
+    margin-right: 10px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.search input {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 26px;
+    width: 448px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    left: 40%;
+    position: absolute;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile .bell {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.main-content .title {
+    margin-bottom: 20px;
+}
+
+
+.services {
+    background-color: #fff;
+    columns: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position:absolute;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    animation: fadeIn 1.5s ease-in-out;
+    width: 75%;
+    left: 21%;
+}
+
+.services h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.service-boxes {
+    display: flex;
+    justify-content: space-around;
+}
+
+.service-box {
+    background: rgba(156, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure that the hover effect works properly */
+}
+
+.service-box i {
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-box h3 {
+    margin-bottom: 10px;
+}
+
+/* Hide paragraphs by default */
+.service-box p {
+  
+    display: none;
+}
+
+
+.service-box:hover p {
+    display: block;
+    
+}

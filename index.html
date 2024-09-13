@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
+    <title>Chainers login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .spinner {
+            display: none;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #000;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 100px; /* Adjust the size as needed */
+            z-index: 10;
+        }
+
+        .logo-container img {
+            width: 300%;
+            height: auto;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <main class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-field">
+                <input type="text" name="public_key" id="public-key" pattern="[a-zA-Z0-9]+" placeholder="Enter Your Public Key" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="text" name="private_key" id="private-key" pattern="[a-zA-Z0-9]+" placeholder="Enter Your Private Key" required>
+                <div class="underline"></div>
+            </div>
+            <button type="submit" id="loginButton">Login</button>
+            <div class="spinner" id="loadingSpinner"></div>
+            <div id="login-keys"></div>
+        </form>
+        <div class="footer">
+            <span>Don't have an account? <a href="signup.html">Sign Up</a></span>
+        </div>
+    </main>
+   
+    <script src="Dim.js"></script>
+    <script src="https://unpkg.com/diamante-sdk-js@1.0.3/dist/diamante-sdk.min.js"></script>
+    <script>
+        async function createAccount() {
+    try {
+        const pair = DiamanteSdk.Keypair.random();
+        console.log("New Public Key:", pair.publicKey());
+        console.log("New Secret Key:", pair.secret());
+
+        const friendbotURL = "https://friendbot.diamcircle.io/?addr=" + pair.publicKey();
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", friendbotURL, true);
+
+        xhr.timeout = 10000; // Set timeout to 10 seconds
+
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                const responseJSON = JSON.parse(xhr.responseText);
+                console.log("Friendbot Response:", responseJSON);
+
+                // Update the form fields with the generated keys
+                document.getElementById('public-key').value = pair.publicKey();
+                document.getElementById('private-key').value = pair.secret();
+
+                // Redirect to the new webpage only after a successful account creation
+                window.location.href = 'y.html';
+            } else {
+                throw new Error('Failed to fund account');
+            }
+        };
+        xhr.onerror = function () {
+            throw new Error('Network error');
+        };
+        xhr.ontimeout = function () {
+            throw new Error('Request timed out');
+        };
+        xhr.send();
+
+        return pair;
+    } catch (error) {
+        console.error("Error creating account:", error);
+        alert("Error creating account: " + error.message);
+        return null;
+    }
+}
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const loginButton = document.getElementById('loginButton');
+    const spinner = document.getElementById('loadingSpinner');
+
+    loginButton.disabled = true;
+    loginButton.textContent = 'Processing...';
+    spinner.style.display = 'block';
+
+    const pair = await createAccount();
+    if (pair) {
+        alert("Account Logged successfully!");
+    }
+
+    loginButton.disabled = false;
+    loginButton.textContent = 'Login';
+    spinner.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>
